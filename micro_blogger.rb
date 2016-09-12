@@ -47,8 +47,11 @@ class MicroBlogger
 
   def everyones_last_tweet
     friends = @client.friends
-    friends.each do |friend|
-      puts "@#{@client.user(friend).screen_name} said..."
+    sorted = friends.sort_by { |a| @client.user(a).screen_name.downcase }
+    sorted.each do |friend|
+      timestamp = @client.user(friend).status.created_at
+
+      puts "On #{timestamp.strftime("%A, %b %d")}, @#{@client.user(friend).screen_name} said..."
       puts "...#{@client.user(friend).status.text}."
     end
   end
