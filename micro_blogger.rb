@@ -87,7 +87,7 @@ class MicroBlogger
       when 'elt'
         then everyones_last_tweet
       when 'turl'
-        then tweet(parts[1..-2].join("") + " " + shorten(parts[-1]))
+        then tweet(parts[1..-2].join(" ") + " " + shorten(parts[-1]))
       else
         puts "Sorry, I don't know how to #{command}"
       end
